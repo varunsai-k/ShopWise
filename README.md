@@ -77,10 +77,81 @@ Flow Summary:
 - Aggregated response sent back to UI
 
 ## Graph Architecture
-<img width="1092" height="661" alt="MultiAgentSystem" src="https://github.com/user-attachments/assets/d7504e08-1836-46a9-a568-e3a12a8493ca" />
+<p align="center"><img width="800" height="500" alt="MultiAgentSystem" src="https://github.com/user-attachments/assets/d7504e08-1836-46a9-a568-e3a12a8493ca" /></p>
 
+This project uses LangGraph to orchestrate a multi-agent workflow, where the Supervisor routes user intents to the appropriate specialized agent.
+The graph consists of four main nodes and tool sub-nodes, as shown in the diagram.
 
+### Graph Overview
 
+  - Supervisor
+      Central controller — interprets the user query and selects the correct agent node.
+
+  - Products Agent
+      Handles product search, categories, filters, and vision-based recommendations.
+      Uses: ProductAgentTools
+
+  - Cart Management Agent
+    Adds, updates, and removes cart items.
+    Uses: CartTools
+
+  - Orders Agent
+    Places orders, checks order status, fetches order history.
+    Uses: OrdersAgentTools
+
+### Flow Summary
+
+  1. Conversation begins at __start__
+  2. Supervisor receives the query and decides which agent to activate
+  3. The selected agent runs its tools
+  4. Agent either delegates again or ends the workflow
+  5. Graph finishes at __end__
+
+### Graph Architecture Diagram
+
+``` (Generated from LangGraph Visualizer — included in repo) MultiAgentSystem.png ```
+
+## 📁 Project Structure
+```
+.
+└── ShopWise/
+    ├── assets/
+    │   ├── MultiAgentIcon.png
+    │   ├── boticon.png
+    │   ├── chaticon3.png
+    │   ├── men__5.jpg
+    │   ├── men__6.jpg
+    │   └── women__1.jpg
+    ├── pages/
+    │   ├── chat.py
+    │   ├── faqs.py
+    │   ├── guest.py
+    │   └── home.py
+    ├── src/
+    │   ├── agents/
+    │   │   ├── CartManagementAgent.py
+    │   │   ├── OrdesAgent.py
+    │   │   └── ProductsAgent.py
+    │   ├── __init__.py
+    │   ├── ecommerce.db
+    │   ├── graph.py
+    │   ├── langgraph.json
+    │   ├── llms.py
+    │   ├── main.py
+    │   ├── nodes.py
+    │   ├── prompts.py
+    │   ├── state.py
+    │   ├── tools.py
+    │   └── utils.py
+    ├── .env
+    ├── DockerFile.api
+    ├── DockerFile.ui
+    ├── README.md
+    ├── app.py
+    ├── config.py
+    ├── docker-compose.yaml
+    └── requirements.txt
+```
 
 
 
