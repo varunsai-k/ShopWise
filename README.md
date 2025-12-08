@@ -1,4 +1,4 @@
-# ShopWise - AI-Powered E-Commerce Multi-Agent System
+# 💬ShopWise
 🚀 Intelligent Multi-Agent Shopping Assistant (LangGraph + FastAPI + Streamlit)
 
 <p align="center"><img width="500" height="500" alt="MultiAgentIcon" src="https://github.com/user-attachments/assets/a7bf018f-a6dc-4582-82b0-d89f618e4df4" /></p>
