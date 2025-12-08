@@ -1,0 +1,8 @@
+{
+    "dependencies":["."],
+    "graphs":{
+        "MultiAgenticGraph":"./graph.py:MultiAgenticGraph"
+    },
+    "env":"C:\\Generative AI\\PythonFullStack\\MultiAgentSystem\\.env"
+    
+}
