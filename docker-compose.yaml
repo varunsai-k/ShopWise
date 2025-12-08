@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: DockerFile.api
+    container_name: agent_api
+    ports:
+      - "8000:8000"
+    environment:
+      GOOGLE_API_KEY: "${GOOGLE_API_KEY}"
+    volumes:
+      - .:/app
+
+  ui:
+    build:
+      context: .
+      dockerfile: DockerFile.ui
+    container_name: agent_ui
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    environment:
+      API_URL: "http://api:8000"
+    volumes:
+      - .:/app
