@@ -1,5 +1,5 @@
 # ShopWise - AI-Powered E-Commerce Multi-Agent System
-Intelligent Multi-Agent Shopping Assistant (LangGraph + FastAPI + Streamlit)
+🚀 Intelligent Multi-Agent Shopping Assistant (LangGraph + FastAPI + Streamlit)
 
 <p align="center"><img width="500" height="500" alt="MultiAgentIcon" src="https://github.com/user-attachments/assets/a7bf018f-a6dc-4582-82b0-d89f618e4df4" /></p>
 
@@ -22,10 +22,10 @@ The entire project is modular, event-driven, and containerized using Docker for 
 2. [Demo](#demo)
 3. [Architecture Overview](#architecture-overview)
 4. [Graph Architecture](#graph-architecture)
-5. [Project Structure](#project-structure)
+5. [Project Structure](#-project-structure)
 6. [Tech Stack](#tech-stack)
 7. [Setup & Installation](#setup--installation)
-8. [Running Using Docker](#running-using-docker)
+8. [Running Using Docker](#running-using-docker-recommended)
 9. [Running Locally Without Docker](#running-locally-without-docker)
 10. [API Usage](#api-usage)
 
@@ -99,7 +99,7 @@ The graph consists of four main nodes and tool sub-nodes, as shown in the diagra
     Places orders, checks order status, fetches order history.
     Uses: OrdersAgentTools
 
-### Flow Summary
+  Flow Summary
 
   1. Conversation begins at __start__
   2. Supervisor receives the query and decides which agent to activate
@@ -115,43 +115,105 @@ The graph consists of four main nodes and tool sub-nodes, as shown in the diagra
 ```
 .
 └── ShopWise/
-    ├── assets/
-    │   ├── MultiAgentIcon.png
-    │   ├── boticon.png
-    │   ├── chaticon3.png
-    │   ├── men__5.jpg
-    │   ├── men__6.jpg
-    │   └── women__1.jpg
-    ├── pages/
-    │   ├── chat.py
-    │   ├── faqs.py
-    │   ├── guest.py
-    │   └── home.py
-    ├── src/
-    │   ├── agents/
-    │   │   ├── CartManagementAgent.py
-    │   │   ├── OrdesAgent.py
-    │   │   └── ProductsAgent.py
-    │   ├── __init__.py
-    │   ├── ecommerce.db
-    │   ├── graph.py
-    │   ├── langgraph.json
-    │   ├── llms.py
-    │   ├── main.py
-    │   ├── nodes.py
-    │   ├── prompts.py
-    │   ├── state.py
-    │   ├── tools.py
-    │   └── utils.py
-    ├── .env
-    ├── DockerFile.api
-    ├── DockerFile.ui
-    ├── README.md
-    ├── app.py
-    ├── config.py
-    ├── docker-compose.yaml
-    └── requirements.txt
+    ├── assets/                               # Static images/icons for UI
+    │   ├── MultiAgentIcon.png                # Icon for multi-agent system
+    │   ├── MultiAgentSystem.png              # Architecture or system diagram
+    │   ├── boticon.png                       # Chatbot icon
+    │   ├── chaticon3.png                     # Chat bubble icon
+    │   ├── men__5.jpg                        # Sample product image (men)
+    │   ├── men__6.jpg                        # Sample product image (men)
+    │   └── women__1.jpg                      # Sample product image (women)
+    ├── pages/                                # Streamlit multipage UI screens
+    │   ├── chat.py                           # Chatbot UI page
+    │   ├── faqs.py                           # FAQs page
+    │   ├── guest.py                          # Guest user page
+    │   └── home.py                           # Home/landing page UI
+    ├── src/                                  # Backend logic & agent code
+    │   ├── agents/                           # LangGraph agent implementations
+    │   │   ├── CartManagementAgent.py        # Logic for cart operations
+    │   │   ├── OrdesAgent.py                 # Orders processing agent
+    │   │   └── ProductsAgent.py              # Product search & recommendations agent
+    │   ├── __init__.py                       # Marks directory as a module
+    │   ├── ecommerce.db                      # SQLite database file
+    │   ├── graph.py                          # LangGraph workflow graph definition
+    │   ├── langgraph.json                    # Graph visualization export
+    │   ├── llms.py                           # LLM initialization/config
+    │   ├── main.py                           # FastAPI entry point for backend API
+    │   ├── nodes.py                          # Nodes used inside the LangGraph pipeline
+    │   ├── prompts.py                        # Prompt templates for agents/LLMs
+    │   ├── state.py                          # Shared graph state definitions
+    │   ├── tools.py                          # Tools used by agents (DB ops, APIs, etc.)
+    │   └── utils.py                          # Helper utilities (common functions)
+    ├── .env                                  # Environment variables (DB_PATH, API keys)
+    ├── DockerFile.api                        # Dockerfile for API backend container
+    ├── DockerFile.ui                         # Dockerfile for Streamlit UI container
+    ├── README.md                             # Project documentation & architecture overview
+    ├── app.py                                # Streamlit main entry (launcher)
+    ├── config.py                             # Project-wide configuration/settings
+    ├── docker-compose.yaml                   # Multi-container setup (API + UI + network)
+    └── requirements.txt                      # Python dependencies for both UI + API
+
+```
+## Tech Stack
+### Backend
+- LangGraph
+- LangChain
+- FastAPI
+- SQLite
+### Frontend
+- Streamlit
+- Custom CSS
+### Infra
+- Docker
+- Docker Compose
+
+## Setup & Installation
+
+Step 1: Clone Repository
+```
+git clone https://github.com/varunsai-k/ShopWise.git
+cd ShopWise
+```
+Step 2: Environment Variables
+Create ```.env```:
+
+```
+GOOGLE_API_KEY=
+LANGSMITH_API_KEY=
+LANGSMITH_TRACING=true
+DB_PATH="ecommerce.db"
+
+```
+## Running Using Docker (Recommended)
+
+```
+docker compose up --build
+
+```
+#### Services
+```
+Component	                 URL
+FastAPI Backend	      http://localhost:8000
+
+Streamlit UI	      http://localhost:8501
+
+```
+## Running Locally (Without Docker)
+
+### Backend
+```
+cd src
+uvicorn main:app --reload --port 8000
 ```
 
+### Frontend
+```
+streamlit run app.py
+
+```
+## API Usage
+
+Interactive docs: ``` http://localhost:8000/docs ```
 
 
+👉 Watch the full Demo walkthrough on YouTube covering Live Agent Workflow and Graph Debugging: [https://youtu.be/HIIaS840zWo](https://youtu.be/HIIaS840zWo)
