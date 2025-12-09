@@ -147,6 +147,7 @@ The graph consists of four main nodes and tool sub-nodes, as shown in the diagra
     ├── .env                                  # Environment variables (DB_PATH, API keys)
     ├── DockerFile.api                        # Dockerfile for API backend container
     ├── DockerFile.ui                         # Dockerfile for Streamlit UI container
+    ├── MultiAgenticWorkflow.ipynb            # Jupyter notebook used for prototyping, debugging and testing multi-agent flows
     ├── README.md                             # Project documentation & architecture overview
     ├── app.py                                # Streamlit main entry (launcher)
     ├── config.py                             # Project-wide configuration/settings
